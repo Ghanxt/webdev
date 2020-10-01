@@ -32,6 +32,10 @@ Table of contents
     21. Home page
     22. Others
 
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
 */
 
 /* ===================================
