@@ -1,35 +1,41 @@
 <?php
 $name = $_Post['name'];
+echo $name;
 $visitor_email = $_Post['email'];
-$message = $_Post['message'];
+echo $visitor_email;
+$message = $_Post['comment'];
+echo $message;
 
 $email_body  =  "User Name: $name.\n";
 $email_body .=  "User Email: $visitor_email.\n";
 $email_body .=  "User Message: $message.\n";
+echo "running1";
 
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+echo "running2";
+
 // Load Composer's autoloader
-require 'php/autoload.php';
+require './php/vendor/autoload.php';
+
+echo "running3";
 
 // Instantiation and passing `true` enables exceptions
-$mail = new PHPMailer(true);
+$mail = new PHPMailer();
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = 'admin.theroasters.me';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'gjha@theroasters.me';
     $mail->Password   = '';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
 
-    $mail->setFrom('gjha@theroasters.me', 'Ghanshyam jha');
+    $mail->addAddress($visitor_email, $name);
 
 
     // Content
@@ -37,8 +43,11 @@ try {
     $mail->Subject = 'Enquiry for jueves design from' . $name;
     $mail->Body    = $email_body;
 
+    $mail->send();
+    echo 'Message has been sent';
 
-    header("location: message.html");
+
+    //header("location: index.html");
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
