@@ -25,7 +25,7 @@ try {
     $mail->Host       = 'admin.theroasters.me';                   
     $mail->SMTPAuth   = true;                                 
     $mail->Username   = 'gjha@theroasters.me';                   
-    $mail->Password   = 'ghanu@123';                               
+    $mail->Password   = '';                               
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;        
     $mail->Port       = 465;                                   
 
