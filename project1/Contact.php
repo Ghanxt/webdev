@@ -1,9 +1,9 @@
 <?php
-$name = $_Post['name'];
+$name = $_POST['name'];
 echo $name;
-$visitor_email = $_Post['email'];
+$visitor_email = $_POST['email'];
 echo $visitor_email;
-$message = $_Post['comment'];
+$message = $_POST['comment'];
 echo $message;
 
 $email_body  =  "User Name: $name.\n";
